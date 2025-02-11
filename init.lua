@@ -17,11 +17,9 @@ local lazy_config = require "configs.lazy"
 require("lazy").setup({
   {
     "NvChad/NvChad",
-    lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-
   { import = "plugins" },
   { import = "custom.hot-plugins" },
   { import = "custom.plugins" }
@@ -32,7 +30,10 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "custom.options"
+require "options"
+require "nvchad.autocmds"
 
 vim.schedule(function()
   require "mappings"
+  require "custom.mappings"
 end)
