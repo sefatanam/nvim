@@ -31,14 +31,19 @@ return {
         "lua_ls"
       },
     })
+
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     -- Setup LSP servers
     mason_lspconfig.setup_handlers({
       function(server_name) -- Default setup for all servers
-        lspconfig[server_name].setup({})
+        lspconfig[server_name].setup({
+          capabilities = capabilities,
+        })
       end,
       ["ts_ls"] = function()
         lspconfig.ts_ls.setup({
           root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+          capabilities = capabilities,
         })
       end,
       ["denols"] = function()
@@ -50,6 +55,7 @@ return {
             end
             return nil
           end,
+          capabilities = capabilities,
         })
       end,
       ["angularls"] = function()
@@ -85,8 +91,9 @@ return {
           end,
           root_dir = lspconfig.util.root_pattern('angular.json', '.git'),                           -- Detect Angular projects
           filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }, -- File types for Angular
-          capabilities = require('nvchad.configs.lspconfig').capabilities,                          -- Capabilities, like autocompletion
+          -- capabilities = require('nvchad.configs.lspconfig').capabilities,                          -- Capabilities, like autocompletion
           on_attach = require('nvchad.configs.lspconfig').on_attach,                                -- Attach custom LSP behaviors
+          capabilities = capabilities,
         }
         lspconfig.angularls.setup(config)
       end,
