@@ -1,6 +1,5 @@
 local M = {}
 
-
 -- Get all Lua files inside the custom/plugins folder
 local plugin_files = vim.fn.globpath(vim.fn.stdpath("config") .. "/lua/custom/plugins/", "*.lua", false, true)
 
