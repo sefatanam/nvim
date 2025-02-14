@@ -59,6 +59,8 @@ return {
         on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
+        root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
       }
       lspconfig.lua_ls.setup {
         on_attach = on_attach,
