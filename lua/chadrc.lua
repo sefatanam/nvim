@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "gruvchad",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
@@ -20,5 +20,6 @@ M.base46 = {
 --          lazyload = false
 --      }
 --}
-M.plugins = require("nvim.new.lua.custom.plugins.init") -- Point to our auto-loader
+
+M.plugins = require("custom.plugins.init") -- Point to our auto-loader
 return M
