@@ -21,8 +21,8 @@ return {
         ui_select = { enable = false }, -- vim.ui.select() wrapper
       })
       -- === Suggested Keymaps: ===
-      require("namu.namu_symbols")
-      require("namu.colorscheme")
+      -- require("namu.namu_symbols")
+      -- require("namu.colorscheme")
     end,
   }
 }

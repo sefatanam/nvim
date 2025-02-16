@@ -48,6 +48,7 @@ return {
       lspconfig.bashls.setup {}
       lspconfig.dockerls.setup {}
       lspconfig.gopls.setup {
+        cmd = { "gopls", "--remote=auto" },
         on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,

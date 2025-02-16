@@ -85,7 +85,7 @@ vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
   desc = "Jump to LSP symbol",
   silent = true,
 })
-vim.keymap.set("n", "<leader>th", ":Namu colorscheme<cr>", {
-  desc = "Colorscheme Picker",
-  silent = true,
-})
+-- vim.keymap.set("n", "<leader>th", ":Namu colorscheme<cr>", {
+--   desc = "Colorscheme Picker",
+--   silent = true,
+-- })
