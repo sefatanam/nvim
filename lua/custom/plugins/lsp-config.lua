@@ -24,6 +24,7 @@ return {
           "yamlls",
           "zls"
         },
+        auto_install = true,
       })
     end
   },
@@ -37,34 +38,53 @@ return {
       local on_init = require('nvchad.configs.lspconfig').on_init
 
 
-      lspconfig.angularls.setup {
+      lspconfig.angularls.setup ({
         on_attach = on_attach,
         on_init = on_init,
         cmd = { "ngserver", "--stdio", "--tsProbeLocations", "", "--ngProbeLocations", "", "--angularCoreVersion", "" },
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("angular.json"),
         filetypes = { "typescript", "html", "typescriptreact", "typescript.tsx", "htmlangular" }
-      }
+      })
+
       lspconfig.bashls.setup {}
       lspconfig.dockerls.setup {}
-      lspconfig.gopls.setup {
-        cmd = { "gopls", "--remote=auto" },
-        on_attach = on_attach,
-        on_init = on_init,
+      lspconfig.gopls.setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          require('nvchad.configs.lspconfig').on_attach(client, bufnr)
+        end,
+        on_init = require('nvchad.configs.lspconfig').on_init,
         capabilities = capabilities,
-      }
+        cmd = { "gopls" },
+        filetypes = { "go", "gomod", "gotmpl", "gowork" },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod"),
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            completeUnimported = true,
+            usePlaceholders = true,
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+      })
+
       lspconfig.html.setup {
         on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,
       }
-      lspconfig.ts_ls.setup {
+      lspconfig.ts_ls.setup ({
         on_attach = on_attach,
         on_init = on_init,
         capabilities = capabilities,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
         root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git"),
-      }
+      })
       lspconfig.lua_ls.setup {
         on_attach = on_attach,
         on_init = on_init,

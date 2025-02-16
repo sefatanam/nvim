@@ -26,6 +26,7 @@ map('n', '<C-p>', ":Telescope find_files<CR>", opts)
 -- Keymap for visual mode
 vim.api.nvim_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
 map("n", "<leader>ds", "<cmd>Telescope diagnostics<CR>", { desc = "Open diagnostics with Telescope" })
+vim.keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references in Telescope" })
 -- Keymap for all mode
 map({ 'i', 'n', 'v' }, '<C-f>', function() vim.lsp.buf.format({ async = true }) end, opts)
 map({ 'i', 'n', 'v' }, "<C-s>", "<cmd> wa <cr>", opts)
