@@ -1,3 +1,5 @@
+require('nvchad.configs.lspconfig')
+
 return {
   {
     "williamboman/mason.nvim",

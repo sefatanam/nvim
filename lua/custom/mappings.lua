@@ -25,7 +25,7 @@ map('n', '<C-p>', ":Telescope find_files<CR>", opts)
 
 -- Keymap for visual mode
 vim.api.nvim_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
-
+map("n", "<leader>ds", "<cmd>Telescope diagnostics<CR>", { desc = "Open diagnostics with Telescope" })
 -- Keymap for all mode
 map({ 'i', 'n', 'v' }, '<C-f>', function() vim.lsp.buf.format({ async = true }) end, opts)
 map({ 'i', 'n', 'v' }, "<C-s>", "<cmd> wa <cr>", opts)
@@ -80,3 +80,12 @@ local function open_harpoon_list(harpoon_files)
 end
 
 vim.keymap.set("n", "<C-e>", function() open_harpoon_list(harpoon:list()) end, { desc = "Open harpoon window" })
+
+vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
+  desc = "Jump to LSP symbol",
+  silent = true,
+})
+vim.keymap.set("n", "<leader>th", ":Namu colorscheme<cr>", {
+  desc = "Colorscheme Picker",
+  silent = true,
+})
